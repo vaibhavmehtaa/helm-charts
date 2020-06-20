@@ -11,24 +11,28 @@ This chart bootstraps directory, all deployment on a [Kubernetes](http://kuberne
 - Kubernetes 1.7+ with Beta APIs enabled
 - Tiller (Charts are build on Helm 2.x)
 
+
+
+## Directory Structure 
+This will be root directory of all helm charts.
 ## Installing the Chart
 
 To install the chart with the release name `directiory-name (Project name)`:
 
-## Directory Structure 
-This will be root directory of all helm charts.
 
-## Installing the Chart
-
-To install the chart with the release name `my-release`:
-
-```console
+```
 $ helm install --name directory(project-name) ./directory(project-name
 ```
 
 The command deploys project on the Kubernetes cluster in the provided namespace. The [configuration](#configuration) section lists the parameters that can be configured during installation.
 
 > **Tip**: List all releases using `helm list`
+
+## Configuration
+
+Each Directory will have the `values.yaml` the configurable parameters of the every chart and their default values.
+
+
 
 ## Uninstalling the Chart
 
