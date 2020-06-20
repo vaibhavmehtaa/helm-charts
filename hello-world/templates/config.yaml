@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+  namespace: {{ required "namespace is missing" .Values.namespace }}
+data:
+  # ---------------------------------------------------------------------------
+  # env variable.
+  # ---------------------------------------------------------------------------
+  base-url: {{ default "" .Values.book.baseUrl | quote }}
+  proxy-url: {{ default "" .Values.book.proxyUrl | quote }}
+  user_name: {{ default "Vaibhav Mehta" .Values.book.user_name | quote }}

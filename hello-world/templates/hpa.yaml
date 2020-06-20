@@ -1,0 +1,17 @@
+{{- if .Values.hpa.enabled -}}
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "hello-world.fullname" . }}
+  namespace: {{ required "namespace is missing" .Values.namespace }}
+  labels:
+{{ include "hello-world.labels" . | indent 4 }}
+spec:
+  maxReplicas: {{ .Values.hpa.max }}
+  minReplicas: {{ .Values.hpa.min }}
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "hello-world.fullname" . }}
+  targetCPUUtilizationPercentage: {{ .Values.hpa.cpuPercentage }}
+{{- end }}

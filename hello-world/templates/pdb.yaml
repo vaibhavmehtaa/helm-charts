@@ -1,0 +1,14 @@
+{{- if .Values.pdb.enabled -}}
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  labels:
+{{ include "hello-world.labels" . | indent 4 }}
+  name: {{ include "hello-world.fullname" . }}
+  namespace: {{ required "namespace is missing" .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "hello-world.fullname" . }}
+  minAvailable: {{ .Values.pdb.minAvailable }}
+{{- end }}
